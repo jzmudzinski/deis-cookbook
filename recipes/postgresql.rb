@@ -5,11 +5,13 @@ service 'postgresql' do
   action [ :enable, :start ]
 end
 
-directory '/etc/postgresql/9.1/main' do
-  owner 'postgres'
-  group 'postgres'
-  mode 0755
-  action :create
+%w(/etc/postgresql /etc/postgresql/9.1 /etc/postgresql/9.1/main).each do |d|
+  directory d do
+    owner 'postgres'
+    group 'postgres'
+    mode 0755
+    action :create
+  end
 end
 
 template '/etc/postgresql/9.1/main/pg_hba.conf' do
