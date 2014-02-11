@@ -14,7 +14,7 @@ end
   end
 end
 
-template '/var/lib/postgresql/9.1/main/pg_hba.conf' do
+template '/etc/postgresql/9.1/main/pg_hba.conf' do
   source 'pg_hba.conf.erb'
   user 'postgres'
   group 'postgres'
@@ -22,7 +22,7 @@ template '/var/lib/postgresql/9.1/main/pg_hba.conf' do
   notifies :reload, "service[postgresql]"
 end
 
-template '/var/lib/postgresql/9.1/main/postgresql.conf' do
+template '/etc/postgresql/9.1/main/postgresql.conf' do
   source 'postgresql.conf.erb'
   user 'postgres'
   group 'postgres'
