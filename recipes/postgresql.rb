@@ -12,6 +12,12 @@ end
     mode 0755
     action :create
   end
+  directory "/etc#{d}" do
+    owner 'postgres'
+    group 'postgres'
+    mode 0755
+    action :create
+  end
 end
 
 template '/etc/postgresql/9.1/main/pg_hba.conf' do
