@@ -5,8 +5,8 @@ service 'postgresql' do
   action [ :enable, :start ]
 end
 
-%w(/etc/postgresql /etc/postgresql/9.1 /etc/postgresql/9.1/main).each do |d|
-  directory d do
+%w(/postgresql /postgresql/9.1 /postgresql/9.1/main).each do |d|
+  directory "/var/lib#{d}" do
     owner 'postgres'
     group 'postgres'
     mode 0755
@@ -14,7 +14,7 @@ end
   end
 end
 
-template '/etc/postgresql/9.1/main/pg_hba.conf' do
+template '/var/lib/postgresql/9.1/main/pg_hba.conf' do
   source 'pg_hba.conf.erb'
   user 'postgres'
   group 'postgres'
@@ -22,7 +22,7 @@ template '/etc/postgresql/9.1/main/pg_hba.conf' do
   notifies :reload, "service[postgresql]"
 end
 
-template '/etc/postgresql/9.1/main/postgresql.conf' do
+template '/var/lib/postgresql/9.1/main/postgresql.conf' do
   source 'postgresql.conf.erb'
   user 'postgres'
   group 'postgres'
