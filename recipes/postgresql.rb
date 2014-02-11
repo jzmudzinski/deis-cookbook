@@ -6,12 +6,6 @@ service 'postgresql' do
 end
 
 %w(/postgresql /postgresql/9.1 /postgresql/9.1/main).each do |d|
-  directory "/var/lib#{d}" do
-    owner 'postgres'
-    group 'postgres'
-    mode 0755
-    action :create
-  end
   directory "/etc#{d}" do
     owner 'postgres'
     group 'postgres'
